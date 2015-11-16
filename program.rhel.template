@@ -5,7 +5,7 @@
 # source function library
 . /etc/rc.d/init.d/functions
 prog=programname
-
+USER=user_program_owner
 BIN=/folder/programname 
 PIDFILE=/var/run/programname.pid
 LOCKFILE=/var/lock/subsys/programname
@@ -35,7 +35,7 @@ fi
 fi
 
 local CMD="$BIN  -command options  &> \"$LOGFILE\" & echo \$!"
-su -c "$CMD" > "$PIDFILE" && success || failure
+su -c "$CMD" $USER > "$PIDFILE" && success || failure
 RETVAL=$?
 echo
 [ $RETVAL -eq 0 ] && touch $LOCKFILE
