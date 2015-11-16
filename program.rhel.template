@@ -4,6 +4,8 @@
 #Install:
 # source function library
 . /etc/rc.d/init.d/functions
+#setup the service 
+#chkconfig --add myscript 
 prog=programname
 USER=user_program_owner
 BIN=/folder/programname 
