@@ -5,7 +5,10 @@
 # source function library
 . /etc/rc.d/init.d/functions
 #setup the service 
-#chkconfig --add myscript 
+#cp myscript file on /etc/init.d folder
+#sudo chmod +x /etc/init.d/myscript
+#sudo chkconfig --add myscript 
+#sudo chkconfig --list | grep myscript to check if the service is added 
 prog=programname
 USER=user_program_owner
 BIN=/folder/programname 
