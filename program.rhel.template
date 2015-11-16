@@ -43,6 +43,17 @@ fi
 if [ ! -f $LOGFILE ]; then
         touch $LOGFILE
         chown $USER:$GROUP $LOGFILE
+##logrotate.d creation##logrotate.d creation
+cat > /etc/logrotate.d/$prog<< EOF4
+$LOGFILE {
+	rotate 7
+        daily
+	missingok
+        notifempty
+        copytruncate
+}
+EOF4
+##end log rotation create 
 fi
 
 local CMD="$BIN  -command options  &> \"$LOGFILE\" & echo \$!"
