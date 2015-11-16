@@ -11,6 +11,7 @@
 #sudo chkconfig --list | grep myscript to check if the service is added 
 prog=programname
 USER=user_program_owner
+GROUP=user_gruop
 BIN=/folder/programname 
 PIDFILE=/var/run/programname.pid
 LOCKFILE=/var/lock/subsys/programname
@@ -37,6 +38,11 @@ failure $"cannot start $prog: $prog is already running."
 echo
 return 1
 fi
+fi
+#if the log file not exist create it
+if [ ! -f $LOGFILE ]; then
+        touch $LOGFILE
+        chown $USER:$GROUP $LOGFILE
 fi
 
 local CMD="$BIN  -command options  &> \"$LOGFILE\" & echo \$!"
